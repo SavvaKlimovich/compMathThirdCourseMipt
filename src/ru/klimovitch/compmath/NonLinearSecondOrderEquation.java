@@ -16,20 +16,20 @@ public class NonLinearSecondOrderEquation extends SecondOrderEquation {
         this.zeroOrderDerivativeFunction = zeroOrderDerivativeFunction;
     }
 
-    public double[] calculateSolution(int n, double integral) {
-        return calculateSolution(n, integral, Math.PI / 4, Math.PI / 8);
+    public double[] calculateSolutionKnowingIntegral(int n, double integral) {
+        return calculateSolutionKnowingIntegral(n, integral, Math.PI / 4, Math.PI / 8);
     }
 
-    private double[] calculateSolution(int n, double integralValue, double angle, double term) {
+    private double[] calculateSolutionKnowingIntegral(int n, double integralValue, double angle, double term) {
         setLeftBoundaryDerivativeValue(Math.tan(angle));
         double[] solution = calculateSolution(n);
         double integral = calculateIntegral(solution, n);
         if (areEqual(integralValue, integral)) {
             return solution;
         } else if (integral > integralValue) {
-            return calculateSolution(n, integralValue, angle - term, term / 2);
+            return calculateSolutionKnowingIntegral(n, integralValue, angle - term, term / 2);
         } else {
-            return calculateSolution(n, integralValue, angle + term, term / 2);
+            return calculateSolutionKnowingIntegral(n, integralValue, angle + term, term / 2);
         }
     }
 
@@ -67,7 +67,8 @@ public class NonLinearSecondOrderEquation extends SecondOrderEquation {
         return integral;
     }
 
-    public void drawSolutionGraph(int n, double integral) {
-        drawGraph(n, argumentDesignation, functionDesignation, calculateSolution(n, integral));
+    public void drawSolutionGraphKnowingIntegral(int n, double integral) {
+        drawGraph(n, argumentDesignation, functionDesignation, 
+                calculateSolutionKnowingIntegral(n, integral));
     }
 }
