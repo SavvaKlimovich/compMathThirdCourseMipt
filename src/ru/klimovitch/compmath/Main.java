@@ -51,6 +51,6 @@ public class Main {
         equation.setLeftBoundaryValue(0);
         equation.setDesignations("x", "y");
 
-        equation.drawSolutionGraph(100_000, 1);
+        equation.drawSolutionGraphKnowingIntegral(100_000, 1);
     }
 }
