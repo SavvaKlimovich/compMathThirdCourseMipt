@@ -31,11 +31,11 @@ public class Main {
     }
 
     private static void eleventhTheme9_1b() {
-        DoubleUnaryOperator q = operand -> 0;
-        DoubleUnaryOperator p = operand -> 10 + operand * operand;
-        DoubleUnaryOperator f = operand -> operand * Math.exp(-operand);
-
-        LinearSecondOrderEquation equation = new LinearSecondOrderEquation(q, p, f);
+        LinearSecondOrderEquation equation = new LinearSecondOrderEquation(
+                operand -> 0,
+                operand -> 10 + operand * operand,
+                operand -> operand * Math.exp(-operand)
+        );
         equation.setBoundaries(0, 10);
         equation.setDesignations("x", "y");
 
