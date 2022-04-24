@@ -95,10 +95,9 @@ public abstract class SecondOrderEquation {
     }
 
     protected void drawGraph(String x, String y, double[] gridFunction) {
-        drawGraph(x, y,
-                new double[][] { gridFunction },
-                new String[] { "" }
-        );
+        double[][] gridFunctions = new double[][] { gridFunction };
+        String[] titles = new String[] { "" };
+        drawGraph(x, y, gridFunctions, titles);
     }
 
     protected void drawGraph(String x, String y, double[][] gridFunctions, String[] titles) {
