@@ -70,6 +70,6 @@ public class NonLinearSecondOrderEquation extends SecondOrderEquation {
 
     public void drawSolutionGraphKnowingIntegral(int n, double integral) {
         double[] solution = calculateSolutionKnowingIntegral(n, integral);
-        drawGraph(n, argumentDesignation, functionDesignation, solution);
+        drawGraph(argumentDesignation, functionDesignation, solution);
     }
 }

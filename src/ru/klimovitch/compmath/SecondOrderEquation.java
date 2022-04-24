@@ -87,24 +87,25 @@ public abstract class SecondOrderEquation {
     }
 
     public void drawSolutionGraph(int n) {
-        drawGraph(n, argumentDesignation, functionDesignation, calculateSolution(n));
+        drawGraph(argumentDesignation, functionDesignation, calculateSolution(n));
     }
 
     public void drawDerivativeGraph(int n) {
-        drawGraph(n, argumentDesignation, derivativeDesignation, calculateDerivative(n));
+        drawGraph(argumentDesignation, derivativeDesignation, calculateDerivative(n));
     }
 
-    protected void drawGraph(int n, String x, String y, double[] gridFunction) {
-        drawGraph(n, x, y,
+    protected void drawGraph(String x, String y, double[] gridFunction) {
+        drawGraph(x, y,
                 new double[][] { gridFunction },
                 new String[] { "" }
         );
     }
 
-    protected void drawGraph(int n, String x, String y, double[][] gridFunctions, String[] titles) {
+    protected void drawGraph(String x, String y, double[][] gridFunctions, String[] titles) {
         XYSeriesCollection dataset = new XYSeriesCollection();
         for (int i = 0; i != gridFunctions.length; i++) {
             XYSeries series = new XYSeries(titles[i]);
+            int n = gridFunctions[i].length - 1;
             double h = (xN - x0) / n;
             for (int j = 0; j != n + 1; j++) {
                 double xI = h * j;

@@ -45,6 +45,6 @@ public class LinearSecondOrderEquation extends SecondOrderEquation {
 
         double[][] solutions = { firstGeneralSolution, secondGeneralSolution, particularSolution };
         String[] titles = { "firstGeneralSolution", "secondGeneralSolution", "particularSolution" };
-        drawGraph(n, argumentDesignation, functionDesignation, solutions, titles);
+        drawGraph(argumentDesignation, functionDesignation, solutions, titles);
     }
 }
