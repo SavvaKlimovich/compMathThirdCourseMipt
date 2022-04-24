@@ -14,12 +14,12 @@ public class LinearSecondOrderEquation extends SecondOrderEquation {
     }
 
     @Override
-    public double[] calculateSolution(int n) {
-        double h = (xN - x0) / n;
-        double[] gridSolution = new double[n + 1];
+    public double[] calculateSolution(int numberOfPoints) {
+        double h = computeStep(numberOfPoints);
+        double[] gridSolution = new double[numberOfPoints];
         gridSolution[0] = u0;
         gridSolution[1] = uDerivative0 * h + u0;
-        for (int i = 2; i != n + 1; i++) {
+        for (int i = 2; i != numberOfPoints; i++) {
             double x = x0 + i * h;
             double qX = functionAtFirstOrderDerivative.applyAsDouble(x);
             double pX = functionAtZeroOrderDerivative.applyAsDouble(x);
@@ -31,17 +31,17 @@ public class LinearSecondOrderEquation extends SecondOrderEquation {
         return gridSolution;
     }
 
-    public void drawGeneralSolution(int n) {
+    public void drawGeneralSolution(int numberOfPoints) {
         DoubleUnaryOperator f = this.rightHandSideFunction;
         this.rightHandSideFunction = operand -> 0;
         setLeftBoundaryConditions(1, 0);
-        double[] firstGeneralSolution = calculateSolution(n);
+        double[] firstGeneralSolution = calculateSolution(numberOfPoints);
         setLeftBoundaryConditions(0, 1);
-        double[] secondGeneralSolution = calculateSolution(n);
+        double[] secondGeneralSolution = calculateSolution(numberOfPoints);
 
         this.rightHandSideFunction = f;
         setLeftBoundaryConditions(0, 0);
-        double[] particularSolution = calculateSolution(n);
+        double[] particularSolution = calculateSolution(numberOfPoints);
 
         double[][] solutions = { firstGeneralSolution, secondGeneralSolution, particularSolution };
         String[] titles = { "firstGeneralSolution", "secondGeneralSolution", "particularSolution" };

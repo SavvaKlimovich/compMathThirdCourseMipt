@@ -73,25 +73,25 @@ public abstract class SecondOrderEquation {
         this.secondDerivativeDesignation = secondDerivativeDesignation;
     }
 
-    public abstract double[] calculateSolution(int n);
+    public abstract double[] calculateSolution(int numberOfPoints);
 
-    public double[] calculateDerivative(int n) {
-        double[] gridFunction = calculateSolution(n);
-        double h = (xN - x0) / n;
-        double[] gridDerivative = new double[n + 1];
-        for (int i = 0; i != n; i++) {
+    public double[] calculateDerivative(int numberOfPoints) {
+        double[] gridFunction = calculateSolution(numberOfPoints);
+        double h = computeStep(numberOfPoints);
+        double[] gridDerivative = new double[numberOfPoints];
+        for (int i = 0; i != numberOfPoints - 1; i++) {
             gridDerivative[i] = (gridFunction[i + 1] - gridFunction[i]) / h;
         }
-        gridDerivative[n] = gridDerivative[n - 1];
+        gridDerivative[numberOfPoints - 1] = gridDerivative[numberOfPoints - 2];
         return gridDerivative;
     }
 
-    public void drawSolutionGraph(int n) {
-        drawGraph(argumentDesignation, functionDesignation, calculateSolution(n));
+    public void drawSolutionGraph(int numberOfPoints) {
+        drawGraph(argumentDesignation, functionDesignation, calculateSolution(numberOfPoints));
     }
 
-    public void drawDerivativeGraph(int n) {
-        drawGraph(argumentDesignation, derivativeDesignation, calculateDerivative(n));
+    public void drawDerivativeGraph(int numberOfPoints) {
+        drawGraph(argumentDesignation, derivativeDesignation, calculateDerivative(numberOfPoints));
     }
 
     protected void drawGraph(String x, String y, double[] gridFunction) {
@@ -104,10 +104,10 @@ public abstract class SecondOrderEquation {
         XYSeriesCollection dataset = new XYSeriesCollection();
         for (int i = 0; i != gridFunctions.length; i++) {
             XYSeries series = new XYSeries(titles[i]);
-            int n = gridFunctions[i].length - 1;
-            double h = (xN - x0) / n;
-            for (int j = 0; j != n + 1; j++) {
-                double xI = h * j;
+            int numberOfPoints = gridFunctions[i].length;
+            double h = computeStep(numberOfPoints);
+            for (int j = 0; j != numberOfPoints; j++) {
+                double xI = x0 + h * j;
                 series.add(xI, gridFunctions[i][j]);
             }
             dataset.addSeries(series);
@@ -123,5 +123,9 @@ public abstract class SecondOrderEquation {
         frame.getContentPane().add(new ChartPanel(chart));
         frame.setSize(800, 600);
         frame.setVisible(true);
+    }
+
+    protected double computeStep(int numberOfPoints) {
+        return (xN - x0) / (numberOfPoints - 1);
     }
 }

@@ -16,31 +16,31 @@ public class NonLinearSecondOrderEquation extends SecondOrderEquation {
         this.zeroOrderDerivativeFunction = zeroOrderDerivativeFunction;
     }
 
-    public double[] calculateSolutionKnowingIntegral(int n, double integral) {
-        return calculateSolutionKnowingIntegral(n, integral, Math.PI / 4, Math.PI / 8);
+    public double[] calculateSolutionKnowingIntegral(int numberOfPoints, double integral) {
+        return calculateSolutionKnowingIntegral(numberOfPoints, integral, Math.PI / 4, Math.PI / 8);
     }
 
-    private double[] calculateSolutionKnowingIntegral(int n, double integralValue, 
+    private double[] calculateSolutionKnowingIntegral(int numberOfPoints, double integralValue,
                                                       double angle, double term) {
         setLeftBoundaryDerivativeValue(Math.tan(angle));
-        double[] solution = calculateSolution(n);
-        double integral = calculateIntegral(solution, n);
+        double[] solution = calculateSolution(numberOfPoints);
+        double integral = calculateIntegral(solution);
         if (areEqual(integralValue, integral)) {
             return solution;
         } else if (integral > integralValue) {
-            return calculateSolutionKnowingIntegral(n, integralValue, angle - term, term / 2);
+            return calculateSolutionKnowingIntegral(numberOfPoints, integralValue, angle - term, term / 2);
         } else {
-            return calculateSolutionKnowingIntegral(n, integralValue, angle + term, term / 2);
+            return calculateSolutionKnowingIntegral(numberOfPoints, integralValue, angle + term, term / 2);
         }
     }
 
     @Override
-    public double[] calculateSolution(int n) {
-        double h = (xN - x0) / n;
-        double[] gridSolution = new double[n + 1];
+    public double[] calculateSolution(int numberOfPoints) {
+        double h = computeStep(numberOfPoints);
+        double[] gridSolution = new double[numberOfPoints];
         gridSolution[0] = u0;
         gridSolution[1] = uDerivative0 * h + u0;
-        for (int i = 2; i != n + 1; i++) {
+        for (int i = 2; i != numberOfPoints; i++) {
             double x = x0 + i * h;
             double qX = functionAtFirstOrderDerivative.applyAsDouble(x);
             double pX = functionAtZeroOrderDerivative.applyAsDouble(x);
@@ -59,17 +59,18 @@ public class NonLinearSecondOrderEquation extends SecondOrderEquation {
         return Math.abs(x - y) < Math.abs(x / 100);
     }
 
-    private double calculateIntegral(double[] gridFunction, int n) {
-        double h = (xN - x0) / n;
-        double integral = h * (gridFunction[0] + gridFunction[n]) / 2;
-        for (int i = 1; i != n + 1; i++) {
+    private double calculateIntegral(double[] gridFunction) {
+        int numberOfPoints = gridFunction.length;
+        double h = computeStep(numberOfPoints);
+        double integral = h * (gridFunction[0] + gridFunction[numberOfPoints - 1]) / 2;
+        for (int i = 1; i != numberOfPoints; i++) {
             integral += h * gridFunction[i];
         }
         return integral;
     }
 
-    public void drawSolutionGraphKnowingIntegral(int n, double integral) {
-        double[] solution = calculateSolutionKnowingIntegral(n, integral);
+    public void drawSolutionGraphKnowingIntegral(int numberOfPoints, double integral) {
+        double[] solution = calculateSolutionKnowingIntegral(numberOfPoints, integral);
         drawGraph(argumentDesignation, functionDesignation, solution);
     }
 }

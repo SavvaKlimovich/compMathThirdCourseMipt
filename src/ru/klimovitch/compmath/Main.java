@@ -1,7 +1,5 @@
 package ru.klimovitch.compmath;
 
-import java.util.function.DoubleUnaryOperator;
-
 public class Main {
     public static void main(String... args) {
         tenthTheme8_9();
@@ -24,10 +22,10 @@ public class Main {
         equation.setLeftBoundaryConditions(0, 5);
         equation.setDesignations("t", "Q", "I");
 
-        int n = 100_000;
-        double[] current = equation.calculateDerivative(n);
-        System.out.println("I(0.1) = " + current[n] + " A");
-        equation.drawDerivativeGraph(n);
+        int numberOfPoints = 100_000;
+        double[] current = equation.calculateDerivative(numberOfPoints);
+        System.out.println("I(0.1) = " + current[numberOfPoints - 1] + " A");
+        equation.drawDerivativeGraph(numberOfPoints);
     }
 
     private static void eleventhTheme9_1b() {
