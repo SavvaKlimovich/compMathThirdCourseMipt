@@ -23,6 +23,8 @@ public abstract class SecondOrderEquation {
     protected String derivativeDesignation;
     protected String secondDerivativeDesignation;
 
+    protected String jFrameName = "JFreeChart";
+
     public SecondOrderEquation(DoubleUnaryOperator functionAtFirstOrderDerivative,
                                DoubleUnaryOperator functionAtZeroOrderDerivative,
                                DoubleUnaryOperator rightHandSideFunction) {
@@ -73,6 +75,10 @@ public abstract class SecondOrderEquation {
         this.secondDerivativeDesignation = secondDerivativeDesignation;
     }
 
+    public void setJFrameName(String jFrameName) {
+        this.jFrameName = jFrameName;
+    }
+
     public abstract double[] calculateSolution(int numberOfPoints);
 
     public double[] calculateDerivative(int numberOfPoints) {
@@ -119,7 +125,7 @@ public abstract class SecondOrderEquation {
                 true, true, true
         );
 
-        JFrame frame = new JFrame("JFreeChart");
+        JFrame frame = new JFrame(jFrameName);
         frame.getContentPane().add(new ChartPanel(chart));
         frame.setSize(800, 600);
         frame.setVisible(true);
