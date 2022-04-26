@@ -1,13 +1,7 @@
 package ru.klimovitch.compmath;
 
-public class Main {
-    public static void main(String... args) {
-        tenthTheme8_9();
-        eleventhTheme9_1b();
-        eleventhTheme9_3b();
-    }
-
-    private static void tenthTheme8_9() {
+public class SixthSemester {
+    public static void tenthTheme8_9() {
         double inductanceHenries = 1;
         double resistanceOhms = 1_000;
         double capacitanceFarads = 0.000_006_25;
@@ -21,6 +15,7 @@ public class Main {
         equation.setBoundaries(0, 0.1);
         equation.setLeftBoundaryConditions(0, 5);
         equation.setDesignations("t", "Q", "I");
+        equation.setJFrameName("Тема X, 8.9");
 
         int numberOfPoints = 100_000;
         double[] current = equation.calculateDerivative(numberOfPoints);
@@ -28,7 +23,7 @@ public class Main {
         equation.drawDerivativeGraph(numberOfPoints);
     }
 
-    private static void eleventhTheme9_1b() {
+    public static void eleventhTheme9_1b() {
         LinearSecondOrderEquation equation = new LinearSecondOrderEquation(
                 operand -> 0,
                 operand -> 10 + operand * operand,
@@ -36,11 +31,12 @@ public class Main {
         );
         equation.setBoundaries(0, 10);
         equation.setDesignations("x", "y");
+        equation.setJFrameName("Тема XI, 9.1b");
 
         equation.drawGeneralSolution(100_000);
     }
 
-    private static void eleventhTheme9_3b() {
+    public static void eleventhTheme9_3b() {
         NonLinearSecondOrderEquation equation = new NonLinearSecondOrderEquation(
                 operand -> 0, operand -> 0,
                 operand -> -operand, Math::sqrt, operand -> 0
@@ -48,6 +44,7 @@ public class Main {
         equation.setBoundaries(0, 1);
         equation.setLeftBoundaryValue(0);
         equation.setDesignations("x", "y");
+        equation.setJFrameName("Тема XI, 9.3b");
 
         equation.drawSolutionGraphKnowingIntegral(100_000, 1);
     }
