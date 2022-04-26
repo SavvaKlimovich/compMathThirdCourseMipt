@@ -2,15 +2,15 @@ package ru.klimovitch.compmath;
 
 import java.util.function.DoubleUnaryOperator;
 
-public class NonLinearSecondOrderEquation extends SecondOrderEquation {
+public class NonLinearSecondOrderODE extends SecondOrderODE {
     private DoubleUnaryOperator firstOrderDerivativeFunction;
     private DoubleUnaryOperator zeroOrderDerivativeFunction;
 
-    public NonLinearSecondOrderEquation(DoubleUnaryOperator functionAtFirstOrderDerivative,
-                                        DoubleUnaryOperator firstOrderDerivativeFunction,
-                                        DoubleUnaryOperator functionAtZeroOrderDerivative,
-                                        DoubleUnaryOperator zeroOrderDerivativeFunction,
-                                        DoubleUnaryOperator rightHandSideFunction) {
+    public NonLinearSecondOrderODE(DoubleUnaryOperator functionAtFirstOrderDerivative,
+                                   DoubleUnaryOperator firstOrderDerivativeFunction,
+                                   DoubleUnaryOperator functionAtZeroOrderDerivative,
+                                   DoubleUnaryOperator zeroOrderDerivativeFunction,
+                                   DoubleUnaryOperator rightHandSideFunction) {
         super(functionAtFirstOrderDerivative, functionAtZeroOrderDerivative, rightHandSideFunction);
         this.firstOrderDerivativeFunction = firstOrderDerivativeFunction;
         this.zeroOrderDerivativeFunction = zeroOrderDerivativeFunction;

@@ -7,7 +7,7 @@ public class SixthSemester {
         double capacitanceFarads = 0.000_006_25;
         double electromotiveForceVolts = 24;
 
-        SecondOrderEquation equation = new LinearSecondOrderEquation(
+        SecondOrderODE equation = new LinearSecondOrderODE(
                 resistanceOhms / inductanceHenries,
                 1 / (inductanceHenries * capacitanceFarads),
                 electromotiveForceVolts / inductanceHenries
@@ -24,7 +24,7 @@ public class SixthSemester {
     }
 
     public static void eleventhTheme9_1b() {
-        LinearSecondOrderEquation equation = new LinearSecondOrderEquation(
+        LinearSecondOrderODE equation = new LinearSecondOrderODE(
                 operand -> 0,
                 operand -> 10 + operand * operand,
                 operand -> operand * Math.exp(-operand)
@@ -37,7 +37,7 @@ public class SixthSemester {
     }
 
     public static void eleventhTheme9_3b() {
-        NonLinearSecondOrderEquation equation = new NonLinearSecondOrderEquation(
+        NonLinearSecondOrderODE equation = new NonLinearSecondOrderODE(
                 operand -> 0, operand -> 0,
                 operand -> -operand, Math::sqrt, operand -> 0
         );

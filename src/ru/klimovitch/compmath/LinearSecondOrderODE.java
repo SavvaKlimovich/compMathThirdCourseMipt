@@ -2,14 +2,14 @@ package ru.klimovitch.compmath;
 
 import java.util.function.DoubleUnaryOperator;
 
-public class LinearSecondOrderEquation extends SecondOrderEquation {
-    public LinearSecondOrderEquation(DoubleUnaryOperator functionAtFirstOrderDerivative,
-                                     DoubleUnaryOperator functionAtZeroOrderDerivative,
-                                     DoubleUnaryOperator rightHandSideFunction) {
+public class LinearSecondOrderODE extends SecondOrderODE {
+    public LinearSecondOrderODE(DoubleUnaryOperator functionAtFirstOrderDerivative,
+                                DoubleUnaryOperator functionAtZeroOrderDerivative,
+                                DoubleUnaryOperator rightHandSideFunction) {
         super(functionAtFirstOrderDerivative, functionAtZeroOrderDerivative, rightHandSideFunction);
     }
 
-    public LinearSecondOrderEquation(double q, double p, double f) {
+    public LinearSecondOrderODE(double q, double p, double f) {
         this(operand -> q, operand -> p, operand -> f);
     }
 

@@ -7,7 +7,7 @@ import org.jfree.data.xy.*;
 import javax.swing.*;
 import java.util.function.DoubleUnaryOperator;
 
-public abstract class SecondOrderEquation {
+public abstract class SecondOrderODE {
     protected double x0;
     protected double xN;
 
@@ -25,9 +25,9 @@ public abstract class SecondOrderEquation {
 
     protected String jFrameName = "JFreeChart";
 
-    public SecondOrderEquation(DoubleUnaryOperator functionAtFirstOrderDerivative,
-                               DoubleUnaryOperator functionAtZeroOrderDerivative,
-                               DoubleUnaryOperator rightHandSideFunction) {
+    public SecondOrderODE(DoubleUnaryOperator functionAtFirstOrderDerivative,
+                          DoubleUnaryOperator functionAtZeroOrderDerivative,
+                          DoubleUnaryOperator rightHandSideFunction) {
         this.functionAtFirstOrderDerivative = functionAtFirstOrderDerivative;
         this.functionAtZeroOrderDerivative = functionAtZeroOrderDerivative;
         this.rightHandSideFunction = rightHandSideFunction;
