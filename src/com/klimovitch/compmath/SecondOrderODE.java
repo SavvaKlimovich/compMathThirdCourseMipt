@@ -92,6 +92,10 @@ public abstract class SecondOrderODE {
         return gridDerivative;
     }
 
+    protected double computeStep(int numberOfPoints) {
+        return (xN - x0) / (numberOfPoints - 1);
+    }
+
     public void drawSolutionGraph(int numberOfPoints) {
         drawGraph(argumentDesignation, functionDesignation, calculateSolution(numberOfPoints));
     }
@@ -129,9 +133,5 @@ public abstract class SecondOrderODE {
         frame.getContentPane().add(new ChartPanel(chart));
         frame.setSize(800, 600);
         frame.setVisible(true);
-    }
-
-    protected double computeStep(int numberOfPoints) {
-        return (xN - x0) / (numberOfPoints - 1);
     }
 }
