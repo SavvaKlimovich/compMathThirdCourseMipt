@@ -1,4 +1,4 @@
-package ru.klimovitch.compmath;
+package com.klimovitch.compmath;
 
 import java.util.function.DoubleUnaryOperator;
 

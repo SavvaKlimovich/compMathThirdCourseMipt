@@ -1,4 +1,4 @@
-package ru.klimovitch.compmath;
+package com.klimovitch.compmath;
 
 public class SixthSemester {
     public static void tenthTheme8_9() {

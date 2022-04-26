@@ -1,4 +1,4 @@
-package ru.klimovitch.compmath;
+package com.klimovitch.compmath;
 
 import org.jfree.chart.*;
 import org.jfree.chart.plot.PlotOrientation;

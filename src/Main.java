@@ -1,4 +1,4 @@
-import ru.klimovitch.compmath.SixthSemester;
+import com.klimovitch.compmath.SixthSemester;
 
 public class Main {
     public static void main(String... args) {
