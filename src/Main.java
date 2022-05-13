@@ -1,9 +1,8 @@
-import com.klimovitch.compmath.SixthSemester;
-
 public class Main {
     public static void main(String... args) {
-        SixthSemester.tenthTheme8_9();
-        SixthSemester.eleventhTheme9_1b();
-        SixthSemester.eleventhTheme9_3b();
+        SixthSemester sem = new SixthSemester();
+        sem.tenthTheme8_9();
+        sem.eleventhTheme9_1b();
+        sem.eleventhTheme9_3b();
     }
 }

@@ -1,7 +1,9 @@
-package com.klimovitch.compmath;
+import com.klimovitch.compmath.LinearSecondOrderODE;
+import com.klimovitch.compmath.NonLinearSecondOrderODE;
+import com.klimovitch.compmath.SecondOrderODE;
 
 public class SixthSemester {
-    public static void tenthTheme8_9() {
+    public void tenthTheme8_9() {
         double inductanceHenries = 1;
         double resistanceOhms = 1_000;
         double capacitanceFarads = 0.000_006_25;
@@ -17,13 +19,13 @@ public class SixthSemester {
         equation.setDesignations("t", "Q", "I");
         equation.setJFrameName("Тема X, 8.9");
 
-        int numberOfPoints = 100_000;
+        int numberOfPoints = 500;
         double[] current = equation.calculateDerivative(numberOfPoints);
         System.out.println("I(0.1) = " + current[numberOfPoints - 1] + " A");
         equation.drawDerivativeGraph(numberOfPoints);
     }
 
-    public static void eleventhTheme9_1b() {
+    public void eleventhTheme9_1b() {
         LinearSecondOrderODE equation = new LinearSecondOrderODE(
                 operand -> 0,
                 operand -> 10 + operand * operand,
@@ -36,7 +38,7 @@ public class SixthSemester {
         equation.drawGeneralSolution(100_000);
     }
 
-    public static void eleventhTheme9_3b() {
+    public void eleventhTheme9_3b() {
         NonLinearSecondOrderODE equation = new NonLinearSecondOrderODE(
                 operand -> 0, operand -> 0,
                 operand -> -operand, Math::sqrt, operand -> 0
